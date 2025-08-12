@@ -1,74 +1,78 @@
-let booksHTML = ``;
+let allBooksHTML = ``;
 
-bookTypes.forEach(function (theBooks) {
-  booksHTML += `
-            <div class="details-of-items">
-            <div class="the-images"><img src="${
-              theBooks.image
-            }"></div>            
-            <div>${theBooks.name}</div>
-            <div>
-                <label for="">Pages</label>
-                <select name="" class="js-quantity-selector">
-                    <option value="25">Less than 25</option>
-                    <option value="50">50 - 75</option>
-                    <option value="100">More than 100</option>
-                    <option value="150">More than 150</option>
-                    <option value="200">More than 250</option>
-                    <option value="500">More than 500</option>
-                    <option value="1000">1000 plus</option>
-                </select>
-            </div>
-            <div>GH¢${(theBooks.priceInCedis / 100).toFixed(2)}/per 100pg copy</div>
-            <div>
-                <label for="">Total Books</label>
-                <input type="number" placeholder="Number of books" id="numBooks">
-            </div>
-            <div class="wishlist js-wishlist" data-addToWishlist="${
-              theBooks.name
-            }">Wishlist</div>
-        </div>`;
+// Loop through each book type and build the HTML structure dynamically
+bookTypes.forEach(function (book) {
+  allBooksHTML += `
+    <div class="details-of-items">
+        <div class="the-images">
+            <img src="${book.image}">
+        </div>            
+
+        <div>${book.name}</div>
+
+        <div>
+            <label for="">Pages</label>
+            <select class="page-selector js-page-selector-${book.name}">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="350">350</option>
+                <option value="500">500</option>
+                <option value="750">750</option>
+                <option value="1000">1000</option>
+            </select>
+        </div>
+
+        <div>GH¢${(book.priceInCedis / 100).toFixed(2)}/per 100pg copy</div>
+
+        <div>
+            <label for="">Total Books</label>
+            <input type="number" placeholder="Number of books" class="book-count-input">
+        </div>
+
+        <div class="wishlist js-wishlist" data-book-name="${book.name}">
+            Wishlist
+        </div>
+    </div>`;
 });
-let allItemContainer = document.querySelector(".all-items-container");
-allItemContainer.innerHTML = booksHTML;
 
-let wishlist = document.querySelectorAll(".js-wishlist");
-wishlist.forEach(function (wishtoGet) {
-  wishtoGet.addEventListener("click", function () {
-    let addtowishlist = wishtoGet.dataset.addtowishlist;
+// Inject the generated HTML into the container
+let bookContainer = document.querySelector(".all-items-container");
+bookContainer.innerHTML = allBooksHTML;
 
-    let sameProduct = 0;
+// Handle Wishlist Button Clicks
+let wishlistButtons = document.querySelectorAll(".js-wishlist");
 
-    products.forEach((checkingSameProducts) => {
-      if (addtowishlist === checkingSameProducts.addtowishlist) {
-        sameProduct = checkingSameProducts;
+wishlistButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    let selectedBookName = button.dataset.bookName;
+
+    // Check if the selected book is already in the wishlist
+    let existingWishlistItem = null;
+
+    products.forEach((wishlistItem) => {
+      if (selectedBookName === wishlistItem.bookName) {
+        existingWishlistItem = wishlistItem;
       }
     });
 
-    if (sameProduct) {
-      sameProduct.quantity++;
+    if (existingWishlistItem) {
+      existingWishlistItem.quantity++;
     } else {
       products.push({
-        addtowishlist,
+        bookName: selectedBookName,
         quantity: 1
       });
     }
 
-    let navBarQuantity = 0;
-    products.forEach((theNavQuantity) => {
-      navBarQuantity += theNavQuantity.quantity;
+    // Update the quantity count in the navigation bar
+    let totalQuantity = 0;
+    products.forEach((item) => {
+      totalQuantity += item.quantity;
     });
 
-    let headerQuantity = document.querySelector(".js-nav-quantity");
-    headerQuantity.innerHTML = `<a herf="#">Quantity (${navBarQuantity})</a>`;
-
-    console.log(products);
+    let navQuantityDisplay = document.querySelector(".js-nav-quantity");
+    navQuantityDisplay.innerHTML = `<a href="#">Quantity (${totalQuantity})</a>`;
   });
-});
-
-let sele = document.querySelectorAll('.js-quantity-selector');
-sele.forEach(function(pages){
-    pages.addEventListener('click', function(){
-        console.log(pages.value);
-    });
 });

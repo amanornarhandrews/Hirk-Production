@@ -38,13 +38,13 @@ nav ul{
     padding: 20px;
     gap: 20px;
 }
-.details-of-items {
-    
+.details-of-items {    
     height: max-content;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     gap: 10px;
+    
 }
 .the-images{
     height: 200px;
@@ -63,10 +63,12 @@ nav ul{
     cursor: pointer;
 }
 
-#numBooks, select{
-    margin-top: 5px;
+.page-selector, .book-count-input{
     padding: 5px 10px;
     border-radius: 20px;
+}
+.book-count-input{
+    margin-top: 10px;
 }
 
 footer{    
