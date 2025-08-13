@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trial 1</title>
+  <style>
+    .box {
+      border: 2px solid #333;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <p>This is box 1 <span class="clickable">[Click me]</span></p>
+  </div>
+
+  <div class="box">
+    <p>This is box 2 <span class="clickable">[Click me]</span></p>
+  </div>
+
+  <script>
+    // Your JS goes here — loop through spans and use .closest()
+    let gptTrial = document.querySelectorAll('.clickable');
+    gptTrial.forEach(butt=>{
+        butt.addEventListener('click', ()=>{
+            let findParent = butt.closest('.box');
+            let findItSpan = findParent.querySelector('.clickable');
+            findItSpan.innerHTML = `JavaScript is great`;
+        });
+    });
+  </script>
+
+</body>
+</html>
