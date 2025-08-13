@@ -24,7 +24,7 @@ bookTypes.forEach(function (book) {
             </select>
         </div>
 
-        <div>GH¢${(book.priceInCedis / 100).toFixed(2)}/per 100pg copy</div>
+        <div>GH¢${(book.priceInCedis/100).toFixed(2)}/per 100pg copy</div>
 
         <div>
             <label for="">Total Books</label>
@@ -37,18 +37,15 @@ bookTypes.forEach(function (book) {
     </div>`;
 });
 
-// Inject the generated HTML into the container
 let bookContainer = document.querySelector(".all-items-container");
 bookContainer.innerHTML = allBooksHTML;
 
-// Handle Wishlist Button Clicks
 let wishlistButtons = document.querySelectorAll(".js-wishlist");
 
 wishlistButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     let selectedBookName = button.dataset.bookName;
-
-    // Check if the selected book is already in the wishlist
+    
     let existingWishlistItem = null;
 
     products.forEach((wishlistItem) => {
@@ -61,12 +58,11 @@ wishlistButtons.forEach(function (button) {
       existingWishlistItem.quantity++;
     } else {
       products.push({
-        bookName: selectedBookName,
+        selectedBookName,
         quantity: 1
       });
     }
-
-    // Update the quantity count in the navigation bar
+    
     let totalQuantity = 0;
     products.forEach((item) => {
       totalQuantity += item.quantity;
@@ -74,5 +70,7 @@ wishlistButtons.forEach(function (button) {
 
     let navQuantityDisplay = document.querySelector(".js-nav-quantity");
     navQuantityDisplay.innerHTML = `<a href="#">Quantity (${totalQuantity})</a>`;
+  
   });
 });
+
