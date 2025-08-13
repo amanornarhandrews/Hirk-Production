@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trial 2</title>
+  <style>
+    .card {
+      border: 1px solid #aaa;
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+<div class="body-card">
+    <!--
+  <div class="card">
+    <h3 class="product-name">Notebook</h3>
+    <p>Price: GH₵5.00</p>
+    <input type="number" class="qty-input" placeholder="Quantity" />
+    <button class="buy-btn">Buy</button>
+  </div>
+
+  <div class="card">
+    <h3 class="product-name">Sketchpad</h3>
+    <p>Price: GH₵7.50</p>
+    <input type="number" class="qty-input" placeholder="Quantity" />
+    <button class="buy-btn">Buy</button>
+  </div>
+  -->
+</div>
+
+
+  <script>
+    // Your JS goes here
+    const stock = [];
+    const purchases = [
+        {
+            name:'Notebook',
+            price:500
+        },
+        {
+            name:'Sketchpad',
+            price:750
+        }
+    ];
+    let allItems = ``;
+    purchases.forEach(function(loopThrough){
+        allItems += `
+          <div class="card">
+    <h3 class="product-name js-product-name">${loopThrough.name}</h3>
+    <p class ="price" data-price="${loopThrough.price / 100}">Price: GH¢${loopThrough.price / 100}</p>
+    <input type="number" class="qty-input js-qty-input" placeholder="Quantity" />
+    <button class="buy-btn js-buy-button">Buy</button>
+  </div>`;
+  console.log(allItems)
+    });
+document.querySelector('.body-card').innerHTML = allItems;
+
+let shop = document.querySelectorAll('.js-buy-button');
+shop.forEach(function(button){
+    button.addEventListener('click', function(){
+        let checkingTheScope = button.closest('.card');
+        let buyButton = checkingTheScope.querySelector('.js-buy-button');
+
+        let qtty = checkingTheScope.querySelector('.js-qty-input');
+        let quantity = Number(qtty.value) || 1;
+
+        let itName = checkingTheScope.querySelector('.js-product-name');
+        let itemName = itName.innerHTML;
+
+        let pri = checkingTheScope.querySelector('.price');
+        let price = Number(pri.dataset.price);
+
+        stock.push(
+            {
+                itemName,
+                quantity,
+                price
+            }
+        );
+        console.log(stock);
+        qtty.value = ``;
+    });
+});
+
+  </script>
+
+</body>
+</html>
