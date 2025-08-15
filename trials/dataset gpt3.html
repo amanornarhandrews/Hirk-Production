@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATASET 1</title>
+</head>
+<body>
+    <div class="product">
+        <h3>USB Cable</h3>
+        <button class="add-to-cart" data-price="15">Add to cart</button>
+    </div>
+
+    <div class="product">
+        <h3>Wireless Mouse</h3>
+        <button class="add-to-cart" data-price="80" data-discount="10">Add to cart</button>
+    </div>
+
+    <div class="product">
+        <h3>Keyboard</h3>
+        <button class="add-to-cart" data-price="100">Add to cart</button>
+    </div>
+
+    <h3>Total: GH¢<span id="total-cost">0</span></h3>
+
+    <script>
+        let product = document.querySelectorAll('.product');
+        product.forEach(botom =>{
+            botom.addEventListener('click', ()=>{
+                let addToCart = botom.closest('.add-to-cart');
+                console.log();
+            });
+        });
+
+
+    </script>
+</body>
+</html>
