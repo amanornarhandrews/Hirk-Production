@@ -50,9 +50,37 @@ const bookTypes = [
   },
   {
     image: "images/exams materials.jpeg",
-    name: "Examination Materials (Answer and Question Booklets)",
+    name: "Examination (Answers & Questions)",
     pages: 8,
     priceInCedis: 900,
     totalBooks: 25,
-  }
+  },
+  {
+    image: "images/note 5.jpeg",
+    name: "Notebooks - Note 5",
+    pages: 43,
+    priceInCedis: 2438,
+    totalBooks: 25,
+  },
+  {
+    image: "images/note 5.jpeg",
+    name: "Notebooks - Note 5",
+    pages: 43,
+    priceInCedis: 2438,
+    totalBooks: 25,
+  },
+  {
+    image: "images/note 5.jpeg",
+    name: "Notebooks - Note 5",
+    pages: 43,
+    priceInCedis: 2438,
+    totalBooks: 25,
+  },
+  {
+    image: "images/note 5.jpeg",
+    name: "Notebooks - Note 5",
+    pages: 43,
+    priceInCedis: 2438,
+    totalBooks: 25,
+  },
 ];

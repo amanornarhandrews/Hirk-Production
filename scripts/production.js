@@ -31,6 +31,8 @@ bookTypes.forEach(function (book) {
             <input type="number" placeholder="Number of books" class="book-count-input">
         </div>
 
+        <div class="added-to-wishlist js-added-to-wishlist">Added</div>
+
         <div class="wishlist js-wishlist" data-book-name="${book.name}">
             Wishlist
         </div>
@@ -43,7 +45,7 @@ bookContainer.innerHTML = allBooksHTML;
 let wishlistButtons = document.querySelectorAll(".js-wishlist");
 
 wishlistButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
+  button.addEventListener("click", function (e) {
     let selectedBookName = button.dataset.bookName;
     
     let existingWishlistItem = null;
@@ -69,8 +71,7 @@ wishlistButtons.forEach(function (button) {
     });
 
     let navQuantityDisplay = document.querySelector(".js-nav-quantity");
-    navQuantityDisplay.innerHTML = `<a href="#">Quantity (${totalQuantity})</a>`;
-  
+    navQuantityDisplay.innerHTML = `<a href="wishlist.html">Wishlist(${totalQuantity})</a>`;
   });
 });
 

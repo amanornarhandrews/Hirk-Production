@@ -11,9 +11,9 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 nav{
-    background-color: gray;
+    background-color: rgb(2, 47, 77);
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 4fr;
     margin-bottom: 10px;
     padding: 20px;
     position: sticky;
@@ -21,6 +21,7 @@ nav{
 nav a{
     text-decoration: none;
     color: initial;
+    color: white;
 }
 nav ul{
     list-style: none;
@@ -33,10 +34,9 @@ nav ul{
 }
 
 .all-items-container{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     padding: 20px;
     gap: 20px;
+    justify-content: center;
 }
 .details-of-items {    
     height: max-content;
@@ -51,12 +51,13 @@ nav ul{
     width: 200px;
 }
 .the-images img{
-    border-radius: 50px;
+    border-radius: 30px;
     height: inherit;
     width: inherit;
 }
 .wishlist{
-    background-color: green;
+    background-color: rgb(2, 47, 77);
+    color: white;
     padding: 10px;
     border-radius: 30px;    
     text-align: center;
@@ -75,7 +76,8 @@ footer{
     bottom: 0;
     position:relative;
     padding: 20px;
-    background-color: gray;
+    background-color: rgb(2, 47, 77);
+    color: white;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -98,4 +100,60 @@ footer ul li{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+}
+.added-to-wishlist{
+    opacity: 0;
+}
+.added-to-wishlist-open{
+    opacity: 1;
+}
+
+
+@media(max-width:474px){
+    .all-items-container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .main-footer-contents{
+        grid-template-columns: 1fr;        
+    }
+    nav{
+        display: none;
+    }
+}
+@media(min-width:475px){
+    .all-items-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .main-footer-contents{
+        grid-template-columns: repeat(2, 1fr);        
+    }
+}
+@media(min-width:700px){
+    .all-items-container{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .main-footer-contents{
+        grid-template-columns: repeat(3, 1fr);        
+    }
+}
+@media(min-width:900px){
+    .all-items-container{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media(min-width:1125px){
+    .all-items-container{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+@media(min-width:1375px){
+    .all-items-container{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+    }
 }
