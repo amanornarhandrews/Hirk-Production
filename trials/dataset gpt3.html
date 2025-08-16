@@ -25,10 +25,17 @@
 
     <script>
         let product = document.querySelectorAll('.product');
+        let totalCost = document.querySelector('#total-cost');
         product.forEach(botom =>{
             botom.addEventListener('click', ()=>{
                 let addToCart = botom.closest('.add-to-cart');
-                console.log();
+                let pricE = botom.dataset.price;
+                console.log(pricE);
+
+
+                let overall = Number(pricE);
+                // price += botom.price;
+                totalCost.innerHTML = overall; 
             });
         });
 
