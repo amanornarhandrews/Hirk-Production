@@ -6,40 +6,62 @@
     <title>DATASET 1</title>
 </head>
 <body>
+    <style>
+        .add-to-cart{
+            cursor: pointer;
+        }
+        .added{
+            visibility: 0;
+        }
+        .addon{
+            background-color: green;
+            height: fit-content;
+            width: fit-content;
+            padding: 8px;
+            margin-bottom: 8px;
+
+        }
+    </style>
     <div class="product">
         <h3>USB Cable</h3>
+        <div class="added"></div>
         <button class="add-to-cart" data-price="15">Add to cart</button>
     </div>
 
     <div class="product">
         <h3>Wireless Mouse</h3>
+        <div class="added"></div>
         <button class="add-to-cart" data-price="80" data-discount="10">Add to cart</button>
     </div>
 
     <div class="product">
         <h3>Keyboard</h3>
+        <div class="added"></div>
         <button class="add-to-cart" data-price="100">Add to cart</button>
     </div>
 
     <h3>Total: GH¢<span id="total-cost">0</span></h3>
 
-    <script>
-        let product = document.querySelectorAll('.product');
-        let totalCost = document.querySelector('#total-cost');
-        product.forEach(botom =>{
-            botom.addEventListener('click', ()=>{
-                let addToCart = botom.closest('.add-to-cart');
-                let pricE = botom.dataset.price;
-                console.log(pricE);
-
-
-                let overall = Number(pricE);
-                // price += botom.price;
-                totalCost.innerHTML = overall; 
+    <div></div>
+<script>
+        let addedtocart = document.querySelectorAll('.add-to-cart');
+        let showAccumulatedPrice = document.querySelector('#total-cost');
+        let addin = document.querySelectorAll('.added');
+        let overall = 0;
+        addedtocart.forEach(button=>{
+            button.addEventListener('click', ()=>{
+                let thePricing = Number(button.dataset.price);
+                let discounts = Number(button.dataset.discount);
+                if(discounts){
+                    overall += thePricing - discounts;
+                }else{
+                    overall += thePricing;
+                }
+                showAccumulatedPrice.innerHTML = overall;
             });
         });
 
-
     </script>
-</body>
-</html>
+</body> 
+
+</html>   

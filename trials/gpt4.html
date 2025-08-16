@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>hm</title>
+</head>
+<body>
+    <div class="product" data-name="Toothbrush">
+        <button class="view">View</button>
+    </div>
+
+    <div class="card" data-id="45">
+        <h3>Item Title</h3>
+        <button class="check">Check ID</button>
+    </div>
+
+    <ul>
+        <li data-index="1" class="list">Item 1 <button class="remove">X</button></li>
+        <li data-index="2" class="list">Item 2 <button class="remove">X</button></li>
+    </ul>
+
+    <div class="product" data-price="10">
+        <button class="add">Add</button>
+    </div>
+    <div class="product" data-price="25">
+        <button class="add">Add</button>
+    </div>
+    <p>Total: $<span id="total">0</span></p>
+
+    <div class="task" data-status="pending">
+        Task A <button class="mark-done">Mark Done</button>
+    </div>
+
+
+<script>
+    //1
+    let alertProductName = document.querySelector('.view');
+    let bullet = document.querySelector('.product');
+    alertProductName.addEventListener('click', function(){
+        let fish = bullet.dataset.name;
+        bullet.innerHTML = `Product: ${fish}`;
+    });
+
+    //2
+    let checked = document.querySelector('.check');
+    checked.addEventListener('click', ()=>{
+        let card = checked.closest('.card');
+        card.innerHTML = `<h3>${card.dataset.id}</h3>`;
+    });
+
+    //3
+    let rem = document.querySelectorAll('.remove');
+    rem.forEach(semenyo=>{
+        semenyo.addEventListener('click', ()=>{
+                let lili = semenyo.closest('.list');
+                lili.remove();
+                console.log(lili);
+            });
+    });
+
+    //4
+    let oad = document.querySelectorAll('.add');
+    let total = 0;
+    oad.forEach(button=>{
+        button.addEventListener('click', ()=>{
+            let prod = button.closest('.product');
+            let pricy = Number(prod.dataset.price);
+            
+            total += pricy;
+            document.querySelector('#total').innerHTML = total;
+            console.log(total);
+        });
+    });
+
+    //5
+    let mark = document.querySelector('.mark-done');
+
+    mark.addEventListener('click', ()=>{
+        let task = mark.closest('.task');
+        task.dataset.status = `done`;
+        mark.innerHTML =  task.dataset.status;
+    });
+    
+</script>
+</body>
+</html>
