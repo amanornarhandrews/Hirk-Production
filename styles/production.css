@@ -36,7 +36,6 @@ nav ul{
 .all-items-container{
     padding: 20px;
     gap: 20px;
-    justify-content: center;
 }
 .details-of-items {    
     height: max-content;
@@ -44,7 +43,6 @@ nav ul{
     flex-direction: column;
     margin-bottom: 20px;
     gap: 10px;
-    
 }
 .the-images{
     height: 200px;
@@ -70,6 +68,7 @@ nav ul{
 }
 .book-count-input{
     margin-top: 10px;
+    width: 100px;
 }
 
 footer{    
@@ -104,7 +103,7 @@ footer ul li{
 .added-to-wishlist{
     opacity: 0;
 }
-.added-to-wishlist-open{
+.show-added{
     opacity: 1;
 }
 

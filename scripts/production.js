@@ -12,7 +12,7 @@ bookTypes.forEach(function (book) {
 
         <div>
             <label for="">Pages</label>
-            <select class="page-selector js-page-selector-${book.name}">
+            <select class="page-selector js-page-selector">
                 <option value="25">25</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
@@ -28,7 +28,7 @@ bookTypes.forEach(function (book) {
 
         <div>
             <label for="">Total Books</label>
-            <input type="number" placeholder="Number of books" class="book-count-input">
+            <input type="number" placeholder="Number of books" class="book-count-input js-book-count-input">
         </div>
 
         <div class="added-to-wishlist js-added-to-wishlist">Added</div>
@@ -47,27 +47,32 @@ let wishlistButtons = document.querySelectorAll(".js-wishlist");
 wishlistButtons.forEach(function (button) {
   button.addEventListener("click", function (e) {
     let selectedBookName = button.dataset.bookName;
-    
-    let existingWishlistItem = null;
 
-    products.forEach((wishlistItem) => {
-      if (selectedBookName === wishlistItem.bookName) {
-        existingWishlistItem = wishlistItem;
-      }
+    let numPages = button.closest('.details-of-items');
+    let pages = Number(numPages.querySelector('.js-page-selector').value);
+    
+    let bookQuantity = Number(numPages.querySelector('.js-book-count-input').value) || 1;
+
+    let existingWishlistItem = products.find(item=>{
+      selectedBookName = item.selectedBookName;
     });
 
     if (existingWishlistItem) {
-      existingWishlistItem.quantity++;
+      existingWishlistItem.totalInWishlist++;
     } else {
       products.push({
         selectedBookName,
-        quantity: 1
+        totalInWishlist:1,
+        NumberofPages: pages,
+        bookQuantity
       });
     }
     
+    console.log(products);
+
     let totalQuantity = 0;
     products.forEach((item) => {
-      totalQuantity += item.quantity;
+      totalQuantity += item.totalInWishlist;
     });
 
     let navQuantityDisplay = document.querySelector(".js-nav-quantity");
