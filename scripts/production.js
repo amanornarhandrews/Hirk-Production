@@ -1,4 +1,4 @@
-import { products } from "./products.js";
+import { products, pushingToProducts } from "../data/products.js";
 import { bookTypes } from "../data/all site data.js";
 
 let allBooksHTML = ``;
@@ -45,8 +45,17 @@ bookTypes.forEach(function (book) {
 let bookContainer = document.querySelector(".all-items-container");
 bookContainer.innerHTML = allBooksHTML;
 
-let wishlistButtons = document.querySelectorAll(".js-wishlist");
+function wishlistCounter(){
+    let totalQuantity = 0;
+    products.forEach((item) => {
+      totalQuantity += item.individualWishListedItems;
+    });
 
+    let navQuantityDisplay = document.querySelector(".js-nav-quantity");
+    navQuantityDisplay.innerHTML = `<a href="wishlist.html">Wishlist(${totalQuantity})</a>`;
+}
+
+let wishlistButtons = document.querySelectorAll(".js-wishlist");
 wishlistButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     let selectedBookName = button.dataset.bookName;
@@ -55,35 +64,11 @@ wishlistButtons.forEach(function (button) {
     let pages = Number(numPages.querySelector('.js-page-selector').value);
     
     let bookQuantity = Number(numPages.querySelector('.js-book-count-input').value) || 1;
+    pushingToProducts(selectedBookName, pages, bookQuantity)
+     
+    wishlistCounter()
 
-
-    
-    
-    let alreadyChosen = products.find(books=> selectedBookName === books.selectedBookName);
-
-    if (alreadyChosen) {
-      alreadyChosen.timesWishListed++;
-      alreadyChosen.bookQuantity += bookQuantity;
-      alreadyChosen.pages = pages;
-    } else {
-      products.push({
-        selectedBookName,
-        individualWishListedItems: 1,
-        pages,
-        bookQuantity,
-        timesWishListed:1
-      });
-    }
-    
     console.log(products);
-
-    let totalQuantity = 0;
-    products.forEach((item) => {
-      totalQuantity += item.individualWishListedItems;
-    });
-
-    let navQuantityDisplay = document.querySelector(".js-nav-quantity");
-    navQuantityDisplay.innerHTML = `<a href="wishlist.html">Wishlist(${totalQuantity})</a>`;
   });  
 });
 

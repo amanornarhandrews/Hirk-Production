@@ -1,0 +1,28 @@
+.big-container{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px;
+    padding: 10px;
+}
+.wishlistedItems-container{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    border: 5px solid green;
+    padding: 20px;
+}
+.wishlistedItems{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.image-container img{
+    width: 200px;
+    height: 200px;
+}
+.accunulated-Prices{
+    border: 2px solid green;
+    padding: 20px;
+    height: fit-content;
+}

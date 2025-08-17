@@ -42,16 +42,16 @@ nav ul{
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-    gap: 10px;
-}
-.the-images{
-    height: 200px;
-    width: 200px;
+    /* gap: 10px; */
+    /* border: 2px solid green; */
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
 }
 .the-images img{
-    border-radius: 30px;
-    height: inherit;
-    width: inherit;
+    /* border-radius: 30px; */
+    height: 200px;
+    width: 200px;
 }
 .wishlist{
     background-color: rgb(2, 47, 77);
@@ -60,6 +60,7 @@ nav ul{
     border-radius: 30px;    
     text-align: center;
     cursor: pointer;
+    width: 100%;
 }
 
 .page-selector, .book-count-input{
@@ -129,7 +130,7 @@ footer ul li{
         grid-template-columns: repeat(2, 1fr);        
     }
 }
-@media(min-width:700px){
+@media(min-width:730px){
     .all-items-container{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -138,19 +139,19 @@ footer ul li{
         grid-template-columns: repeat(3, 1fr);        
     }
 }
-@media(min-width:900px){
+@media(min-width:1000px){
     .all-items-container{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
     }
 }
-@media(min-width:1125px){
+@media(min-width:1200px){
     .all-items-container{
         display: grid;
         grid-template-columns: repeat(5, 1fr);
     }
 }
-@media(min-width:1375px){
+@media(min-width:1450px){
     .all-items-container{
         display: grid;
         grid-template-columns: repeat(6, 1fr);
