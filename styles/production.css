@@ -64,7 +64,7 @@ nav ul{
 
 .page-selector, .book-count-input{
     padding: 5px 10px;
-    border-radius: 20px;
+    border-radius: 12px;
 }
 .book-count-input{
     margin-top: 10px;
@@ -100,10 +100,10 @@ footer ul li{
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
-.added-to-wishlist{
+.added-to-wishlist-notif{
     opacity: 0;
 }
-.show-added{
+.show-added-notif{
     opacity: 1;
 }
 

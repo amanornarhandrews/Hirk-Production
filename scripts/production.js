@@ -1,3 +1,6 @@
+import { products } from "./products.js";
+import { bookTypes } from "../data/all site data.js";
+
 let allBooksHTML = ``;
 
 // Loop through each book type and build the HTML structure dynamically
@@ -31,7 +34,7 @@ bookTypes.forEach(function (book) {
             <input type="number" placeholder="Number of books" class="book-count-input js-book-count-input">
         </div>
 
-        <div class="added-to-wishlist js-added-to-wishlist">Added</div>
+        <div class="added-to-wishlist-notif js-added-to-wishlist-notif">Added</div>
 
         <div class="wishlist js-wishlist" data-book-name="${book.name}">
             Wishlist
@@ -45,7 +48,7 @@ bookContainer.innerHTML = allBooksHTML;
 let wishlistButtons = document.querySelectorAll(".js-wishlist");
 
 wishlistButtons.forEach(function (button) {
-  button.addEventListener("click", function (e) {
+  button.addEventListener("click", function () {
     let selectedBookName = button.dataset.bookName;
 
     let numPages = button.closest('.details-of-items');
@@ -53,18 +56,22 @@ wishlistButtons.forEach(function (button) {
     
     let bookQuantity = Number(numPages.querySelector('.js-book-count-input').value) || 1;
 
-    let existingWishlistItem = products.find(item=>{
-      selectedBookName = item.selectedBookName;
-    });
 
-    if (existingWishlistItem) {
-      existingWishlistItem.totalInWishlist++;
+    
+    
+    let alreadyChosen = products.find(books=> selectedBookName === books.selectedBookName);
+
+    if (alreadyChosen) {
+      alreadyChosen.timesWishListed++;
+      alreadyChosen.bookQuantity += bookQuantity;
+      alreadyChosen.pages = pages;
     } else {
       products.push({
         selectedBookName,
-        totalInWishlist:1,
-        NumberofPages: pages,
-        bookQuantity
+        individualWishListedItems: 1,
+        pages,
+        bookQuantity,
+        timesWishListed:1
       });
     }
     
@@ -72,11 +79,11 @@ wishlistButtons.forEach(function (button) {
 
     let totalQuantity = 0;
     products.forEach((item) => {
-      totalQuantity += item.totalInWishlist;
+      totalQuantity += item.individualWishListedItems;
     });
 
     let navQuantityDisplay = document.querySelector(".js-nav-quantity");
     navQuantityDisplay.innerHTML = `<a href="wishlist.html">Wishlist(${totalQuantity})</a>`;
-  });
+  });  
 });
 

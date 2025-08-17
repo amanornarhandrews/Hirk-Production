@@ -1,4 +1,4 @@
-const bookTypes = [
+export const bookTypes = [
   {
     image: "images/a5 novel.jpeg",
     name: "A5 Novel Sized",
